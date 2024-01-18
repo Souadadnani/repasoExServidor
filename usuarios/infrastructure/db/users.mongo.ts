@@ -14,6 +14,7 @@ export default class UserRepositoryMongoDB implements UserRepository {
     async logIn(user: User): Promise<User> {
         const userServer = await collections.users.findOne({
             username: user.usuario,
+            password: user.password
         });
         if(!userServer) throw new Error("Este usuario no se encuentra registrate para poder acceder");
         else{
@@ -34,7 +35,7 @@ export default class UserRepositoryMongoDB implements UserRepository {
     async getUserById(id: string): Promise<User> {
         const idObject = new ObjectId(id);
         const userServer = await collections.users.findOne({_id: idObject});
-        if(!userServer) throw new Error("Este usuario no se encuentra registrate para pode acceder");
+        if(!userServer) throw new Error("Este usuario no se encuentra. Registrate para pode acceder");
         const user: User = {
             id: String(userServer._id),
             nombre: userServer.nombre,

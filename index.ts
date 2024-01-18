@@ -7,7 +7,9 @@ const app = express();
 const port = 8080;
 
 app.use(express.json());
-const api = "/api";
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
 app.use(`/users`, userRouter);
 
 
