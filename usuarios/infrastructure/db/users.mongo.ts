@@ -13,7 +13,7 @@ export default class UserRepositoryMongoDB implements UserRepository {
 
     async logIn(user: User): Promise<User> {
         const userServer = await collections.users.findOne({
-            username: user.usuario,
+            usuario: user.usuario,
             password: user.password
         });
         if(!userServer) throw new Error("Este usuario no se encuentra registrate para poder acceder");

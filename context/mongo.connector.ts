@@ -22,6 +22,9 @@ const addCollections = (db: Db) => {
   collections.users = db.collection(
     process.env.MONGO_DB_COLLECTION_USERS || "users"
   );
+  collections.libros = db.collection(
+    process.env.MONGO_DB_COLLECTION_LIBROS || "libros"
+  );
 };
 
 export default createMongoConnection;

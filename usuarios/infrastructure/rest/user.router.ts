@@ -22,20 +22,26 @@ router.post("/iniciarsesion", async (req, res) => {
         const { usuario, password } = req.body;
         const user: User = {
             usuario,
-            password,
-            nombre: "",
-            apellidos: "",
-            news: false
+            password
         };
 
         const response = await usersUseCases.logIn(user);
         if(response){
-            res.json(response);
+            res.json({
+                user: {
+                    id: response.id,
+                    nombre: response.nombre,
+                    apellidos: response.apellidos,
+                    email: response.email,
+                    libros: response.libros,                   
+                }
+            });
         }else{
             res.status(404).json({error: "EL usuario no esta registrado"});
         }
 
     } catch (error) {
+        console.log(error);     
         res.status(500).json({ error: "Internal Server Error"});  
     }
     

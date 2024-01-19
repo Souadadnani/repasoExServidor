@@ -2,11 +2,11 @@ import Libro from "../../Libros/domain/Libro";
 
 export default interface User{
     id?: string,
-    nombre: string,
-    apellidos: string,
+    nombre?: string,
+    apellidos?: string,
     usuario: string,
     password: string,
     email?: string,
-    news: boolean,
+    news?: boolean,
     libros?: Array<Libro>
 }
