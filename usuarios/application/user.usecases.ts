@@ -1,3 +1,4 @@
+import { json } from "express";
 import User from "../domain/User";
 import UserRepository from "../domain/user.repository";
 
@@ -8,12 +9,12 @@ export class UsersUseCases {
         this.userRepository = userRepository;
     }
 
-    registrar(user: User){
-        return this.userRepository.registrarUser(user);
+    async registrar(user: User){
+        return await this.userRepository.registrarUser(user);
     }
 
-    logIn(user: User){
-        return this.userRepository.logIn(user);
+    async logIn(user: User){
+        return await this.userRepository.logIn(user);
     }
 
     getUserById(id: string){
