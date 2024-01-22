@@ -1,4 +1,4 @@
-import express, { Router } from "express";
+import express from "express";
 import { UsersUseCases } from "../../application/user.usecases";
 import UserRepositoryMongoDB from "../db/users.mongo";
 import User from "../../domain/User";
@@ -6,28 +6,28 @@ import User from "../../domain/User";
 const router = express.Router();
 const usersUseCases: UsersUseCases = new UsersUseCases(new UserRepositoryMongoDB());
 
-router.post("/registrar", async(req, res)=>{
-    try {
-        const newUser = req.body;
-        const createdUser = await usersUseCases.registrar(newUser);
-        res.status(201).json(createdUser);
-
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error" });
-    }
+router.use(express.urlencoded({ extended: false }));
+/* permite analizar datos de formularios HTML que se envían a través de solicitudes POST 
+     { extended: true } permite el análisis de datos más complejos
+*/
+router.get("/login",async (req, res) => {
+    //const content: object = {title: 'Iniciar Sesion'};
+    res.render('login');
 });
 
-/* router.post("/iniciarsesion", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const { usuario, password } = req.body;
         const user: User = {
             usuario,
             password
         };
-
         const response = await usersUseCases.logIn(user);
+        const mensaje = 'Sesión iniciada con exito!';
         if(response){
-            res.json({
+            res.render('mensaje', {response, mensaje});
+            console.log("Sesion iniciada");           
+           /*  res.json({
                 user: {
                     id: response.id,
                     nombre: response.nombre,
@@ -35,16 +35,15 @@ router.post("/registrar", async(req, res)=>{
                     email: response.email,
                     libros: response.libros,                   
                 }
-            });
+            }); */
         }else{
             res.status(404).json({error: "EL usuario no esta registrado"});
-        }
+        } 
 
     } catch (error) {
         console.log(error);     
         res.status(500).json({ error: "Internal Server Error"});  
-    }
-    
-}); */
+    }   
+});
 
 export default router;

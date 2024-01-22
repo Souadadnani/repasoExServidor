@@ -14,24 +14,6 @@ router.get("/",async (req, res) => {
     }
 });
 
-router.get("/disponibles",async (req, res) => {
-    try {
-        const librosDisponibles = await librosUseCases.getLibrosDisponibles();
-        res.status(201).json(librosDisponibles);
-    } catch (error) {
-        res.status(500).json({error: "Internal server error"});
-    }
-});
-
-router.get("/prestados",async (req, res) => {
-    try {
-        const librosPrestados = await librosUseCases.getLibrosPrestados();
-        res.status(201).json(librosPrestados);
-    } catch (error) {
-        res.status(500).json({error: "Internal server error"});
-    }
-});
-
 router.put("/prestar/:user/:id",async (req, res) => {
     try {
         const id = req.params.id;

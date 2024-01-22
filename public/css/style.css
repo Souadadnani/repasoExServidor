@@ -1,0 +1,35 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+nav{
+    width: 100%;
+}
+header{
+    text-align: center;
+    background-color: cornflowerblue;
+    color: aliceblue;
+    padding: 1%;
+}
+
+a{
+    text-decoration: none;
+    color:navy;  
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+h2{
+    color:cornflowerblue;
+    text-align: center;
+    padding: 2%;
+}
+main{
+    width: 70%;
+    margin: 0 15%;
+}

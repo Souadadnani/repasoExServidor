@@ -16,7 +16,7 @@ export default class UserRepositoryMongoDB implements UserRepository {
             usuario: user.usuario,
             password: user.password
         });
-        if(!userServer) throw new Error("Este usuario no se encuentra registrate para poder acceder");
+        if(!userServer) throw new Error("Este usuario no se encuentra. Registrate para poder acceder");
         else{
             const user: User ={
                 id: String(userServer._id),

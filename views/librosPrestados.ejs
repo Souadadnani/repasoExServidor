@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <title>libros Prestados</title>
+</head>
+<body>
+    <%- include('fragments/header') %>
+    <%- include('fragments/nav') %>
+    <main>
+        <h2>Libros Prestados</h2>
+        <ul>
+            <% librosPrestados.forEach((libro)=>{%>
+                <li><%=libro.titulo%></li><%
+            })%>
+        </ul>
+    </main>
+</body>
+</html>
